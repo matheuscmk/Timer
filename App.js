@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Picker } from 'react-native';
 
 export default function App() {
-
+//Teste para o github
   console.disableYellowBox = true;
   const [segundos, setarSegundos] = useState(0);
   const [minutos, setarMinutos] = useState(0);
