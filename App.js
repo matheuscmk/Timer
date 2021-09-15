@@ -2,11 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Picker, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import Contador from './Contador';
 export default function App() {
   //Teste para o github
   console.disableYellowBox = true;
+  const [estado,setarEstado] = useState('selecionar');
   const [segundos, setarSegundos] = useState(0);
-  const [minutos, setarMinutos] = useState(0);
+  const [minutos, setarMinutos] = useState(1);
   const [alarmeSound, setarAlarmeSound] = useState([
     {
       id:1,
@@ -44,6 +46,8 @@ export default function App() {
      })
     setarAlarmeSound(alarmesTemp);
     }
+
+    if(estado == 'selecionar'){
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -101,11 +105,26 @@ if(val.selecionado){
           })
       }
       </View>
+      <TouchableOpacity onPress={()=>setarEstado('iniciar')} style={styles.btnIniciar}><Text style={{textAlign:'center', paddingTop:30, color:'black', fontSize:20}}>Iniciar</Text></TouchableOpacity>
     </View>
   );
+    }else if(estado == 'iniciar'){
+      return(
+        <Contador setarEstado={setarEstado} minutos={minutos} segundos={segundos}></Contador>
+      );
+}
 }
 
 const styles = StyleSheet.create({
+  btnIniciar:{
+    backgroundColor:'rgb(250, 241, 65)',
+    width:100,
+    height:100,
+    borderRadius:50,
+    marginTop:30,
+    borderColor:'white',
+    borderWidth:2
+  },
   container: {
     flex: 1,
     //  backgroundColor: 'rgb(250, 241, 65)',
