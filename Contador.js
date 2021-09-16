@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Picker, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
+import { Audio } from 'expo-av';
 
 
 export default function Contador(props) {  
@@ -19,7 +20,7 @@ export default function Contador(props) {
                 props.setarEstado('selecionar');
                 props.setarMinutos(0);
                 props.setarSegundos(1);
-                alert("Fim, contador chegou a zero!!");
+                playSound();
               }
             }
           }
@@ -28,6 +29,21 @@ export default function Contador(props) {
       return () => clearInterval(timer);
 
     })
+
+    async function playSound() {
+      const soundObject = new Audio.Sound();
+      try {
+        var alarme;
+        props.alarmes.map(function (val) {
+          
+        })
+        await soundObject.loadAsync(require('./assets/sounds/hello.mp3'));
+        await soundObject.playAsync();
+        await soundObject.unloadAsync();
+      } catch (error) {
+
+      }
+    }
 
     function resetar() {
       props.setarEstado('leitura');
