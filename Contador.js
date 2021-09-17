@@ -35,11 +35,12 @@ export default function Contador(props) {
       try {
         var alarme;
         props.alarmes.map(function (val) {
-          
+          if(val.selecionado){
+            alarme = val.file;
+          }
         })
-        await soundObject.loadAsync(require('./assets/sounds/hello.mp3'));
+        await soundObject.loadAsync(alarme);
         await soundObject.playAsync();
-        await soundObject.unloadAsync();
       } catch (error) {
 
       }
